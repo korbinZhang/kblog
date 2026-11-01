@@ -1,0 +1,51 @@
+{% extends "admin/base.jinja" %}
+
+{% block body %}
+  <section class="admin-cards">
+    <div class="admin-card admin-stat">
+      <span class="admin-stat-value">{{ total }}</span>
+      <span class="admin-stat-label">文章总数</span>
+    </div>
+    <div class="admin-card admin-stat">
+      <span class="admin-stat-value">{{ published }}</span>
+      <span class="admin-stat-label">已发布</span>
+    </div>
+    <div class="admin-card admin-stat">
+      <span class="admin-stat-value">{{ drafts }}</span>
+      <span class="admin-stat-label">草稿</span>
+    </div>
+  </section>
+
+  <section class="admin-card">
+    <div class="admin-card-head">
+      <h2 class="admin-heading">最近文章</h2>
+      <a class="admin-btn admin-btn-primary" href="{{ admin_base }}/posts/new">新建文章</a>
+    </div>
+    {% if recent %}
+      <table class="admin-table">
+        <thead>
+          <tr><th>标题</th><th>日期</th><th>状态</th><th>更新于</th><th></th></tr>
+        </thead>
+        <tbody>
+          {% for p in recent %}
+            <tr>
+              <td class="admin-cell-title">{{ p.title }}</td>
+              <td>{{ p.date }}</td>
+              <td>
+                <span class="admin-status {{ 'admin-status-on' if p.published else 'admin-status-draft' }}">
+                  {{ '已发布' if p.published else '草稿' }}
+                </span>
+              </td>
+              <td>{{ p.updated }}</td>
+              <td class="admin-cell-actions">
+                <a class="admin-btn" href="{{ admin_base }}/posts/{{ p.id }}">编辑</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="admin-empty">还没有文章, 点「新建文章」开始。</p>
+    {% endif %}
+  </section>
+{% endblock %}

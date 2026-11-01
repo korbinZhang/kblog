@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ description }}">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f8fa">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#11151c">
+  <title>{{ title }}</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/base.css">
+  {% block page_css %}{% endblock %}
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ site_url }}">{{ brand }}</a>
+    <button class="menu-toggle">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <nav class="nav-collapse">
+      <ul class="nav-list">
+        {% for i in navs %}
+          <li class="{{ 'active' if i.2 }}"><a href="{{ i.0 }}">{{ i.1 }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  {% block main %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{% extends "admin/base.jinja" %}
+
+{% block body %}
+  <section class="admin-card admin-card-tight">
+    <h1 class="admin-heading">后台登录</h1>
+    <form class="admin-form" method="post" action="{{ admin_base }}/login">
+      <label for="password">密码</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <div class="admin-form-actions">
+        <button class="admin-btn admin-btn-primary" type="submit">登录</button>
+      </div>
+    </form>
+    <p class="admin-hint">初始密码在服务器启动日志里, 登录后请在「站点设置」中修改。</p>
+  </section>
+{% endblock %}

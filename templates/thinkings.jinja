@@ -1,0 +1,39 @@
+{% extends "base.jinja" %}
+{% block page_css %}<link rel="stylesheet" href="/archive.css">
+<link rel="stylesheet" href="/thinkings.css">{% endblock %}
+{% block main %}<main class="micro-blog">
+    <section class="toolbar">
+      <div class="tabs">
+        {% for i in toolbar_tabs %}
+          <a class="{{ 'selected' if i.2 }}" href="{{ base_url }}/{{ i.0 }}">
+            {{ i.0 }} · {{ i.1 }}
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="status-line" aria-live="polite">
+      <span id="status-text">{{ current_year }} · {{ current_count }} posts</span>
+      <span class="status-actions">
+        <span class="total-meta">All <span id="total-count">{{ total_count }}</span> posts</span>
+      </span>
+    </section>
+
+    <ol class="timeline" id="timeline" aria-live="polite">
+      {% for c in contents %}
+        <li class="timeline-item highlight" id="{{ c.2 }}">
+          <div class="item-date">
+            <time datetime="{{ c.0 }}">{{ c.1 }}</time>
+            <a href="#{{ c.2 }}">#{{ c.2 }}</a>
+          </div>
+          <div class="content">
+            {{ c.3 | safe }}
+          </div>
+        </li>
+      {% else %}
+        <li class="timeline-item">
+          <div class="content">暂无碎念</div>
+        </li>
+      {% endfor %}
+    </ol>
+  </main>{% endblock %}

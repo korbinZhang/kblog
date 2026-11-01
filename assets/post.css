@@ -1,0 +1,286 @@
+.inner {
+  margin: 56px auto 64px;
+  padding: 2% 8% 4%;
+  margin-left: clamp(8px, calc((100vw - 922px) / 2), 14%);
+  margin-right: clamp(8px, calc((100vw - 922px) / 2), 14%);
+  border: 1px solid var(--color-border);
+  background: var(--surface-1);
+}
+
+.inner h1 {
+  font-family: "Palatino Linotype", Palatino, "Times New Roman", STKaiti, "Kaiti SC", serif;
+  font-size: clamp(1.75em, 4.2vw, 2em);
+  line-height: 1.35;
+  color: var(--color-text);
+  text-align: center;
+  margin: 1.4em 0 0.8em;
+  font-weight: 600;
+}
+
+.inner h1::after {
+  content: "";
+  display: block;
+  width: 6em;
+  max-width: 80%;
+  height: 3px;
+  background: #e6e6e6;
+  border-radius: 2px;
+  margin: 0.45em auto 0;
+}
+
+.inner .time {
+  text-align: center;
+  line-height: 1.0;
+  font-size: 90%;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.inner .title-margin {
+  margin-bottom: 40px;
+}
+
+.inner p,
+.inner ul,
+.inner ol {
+  font-size: 1em;
+  line-height: 1.8;
+  margin: 1em 0;
+}
+
+.inner ul,
+.inner ol {
+  margin: 0.6em 0 0.9em 1.2em;
+  padding-left: 1.2em;
+  list-style-position: outside;
+}
+
+.inner li {
+  margin: 0.4em 0;
+  line-height: 1.65;
+}
+
+.inner li + li {
+  margin-top: 0.35em;
+}
+
+.inner ul li::marker {
+  color: var(--color-muted);
+  font-size: 0.75em;
+}
+
+.inner ol li::marker {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.inner a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.inner a:hover {
+  color: var(--color-link-hover);
+}
+
+.inner img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: block;
+  margin: 16px auto;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.18s ease, transform 0.16s ease;
+}
+
+.inner a:hover img {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.inner h2 {
+  font-family: "Palatino Linotype", Palatino, "Times New Roman", STKaiti, "Kaiti SC", serif;
+  font-size: 1.6em;
+  margin: 1.5em 0 40px;
+  padding: 5px 0;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.inner h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #e6e6e6;
+  margin-top: 0.4em;
+}
+
+.inner h3 {
+  font-family: "Palatino Linotype", Palatino, "Times New Roman", STKaiti, "Kaiti SC", serif;
+  font-size: 1.2em;
+  margin: 40px 0 30px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.inner h3::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #e6e6e6;
+  margin-top: 0.35em;
+}
+
+.inner blockquote {
+  background: var(--color-quote-bg);
+  border-left: 3px solid var(--color-quote-border);
+  padding: 0.75em 1em;
+  margin: 1em 0 1.2em 0;
+  border-radius: 4px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.inner blockquote p {
+  margin: 0.55em 0;
+}
+
+.inner blockquote ul,
+.inner blockquote ol {
+  padding-left: 1.2em;
+  margin: 0.6em 0 0.8em 0;
+}
+
+.inner blockquote li + li {
+  margin-top: 0.35em;
+}
+
+.inner blockquote ul li::marker,
+.inner blockquote ol li::marker {
+  color: var(--color-muted);
+}
+
+.inner pre {
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin: 1.2em 0;
+}
+
+.inner code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.inner :not(pre) > code {
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+
+.inner strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.inner hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2em 0;
+}
+
+.inner figure {
+  margin: 16px auto;
+  text-align: center;
+}
+
+.inner figure img {
+  margin: 0 auto;
+}
+
+.inner figcaption {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .inner {
+    width: calc(100% - 28px);
+    margin: 34px auto 40px;
+    padding: 8px 22px 20px;
+    border: none;
+    background: var(--surface-1);
+  }
+  .inner h1 {
+    font-size: clamp(1.6em, 7vw, 1.9em);
+  }
+  .inner h2 {
+    font-size: clamp(1.25em, 4.2vw, 1.4em);
+  }
+  .inner h3 {
+    font-size: 1.15em;
+  }
+  .inner p,
+  .inner ul li,
+  .inner ol li {
+    font-size: 16px;
+    line-height: 1.76;
+  }
+  .inner ul,
+  .inner ol {
+    margin: 0.6em 0 0.9em 0;
+    padding-left: 1.4em;
+  }
+  .inner blockquote {
+    padding: 0.65em 0.9em;
+    border-left: 3px solid var(--color-quote-border);
+    border-radius: 4px;
+  }
+  .inner pre {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+  .inner img {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .inner {
+    border-color: #2a2f37;
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+  .inner h1::after,
+  .inner h2::after,
+  .inner h3::after {
+    background: #2a2f37;
+  }
+  .inner blockquote {
+    background: var(--surface-2);
+    border-left-color: var(--color-border-strong);
+  }
+  .inner pre,
+  .inner :not(pre) > code {
+    background: var(--surface-2);
+    border-color: var(--color-border);
+  }
+  .inner img {
+    background: #0f1115;
+    border-color: #2a2f37;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}

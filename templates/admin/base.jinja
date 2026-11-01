@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{{ page_title }} · {{ site_name }}</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body class="admin-body">
+  <header class="admin-topbar">
+    <a class="admin-brand" href="{{ admin_base }}/">{{ site_name }}</a>
+    {% if logged_in %}
+      <nav class="admin-nav">
+        <a href="{{ admin_base }}/">仪表盘</a>
+        <a href="{{ admin_base }}/posts">文章</a>
+        <a href="{{ admin_base }}/settings">站点设置</a>
+        <a href="/">查看站点</a>
+      </nav>
+      <form class="admin-logout" method="post" action="{{ admin_base }}/logout">
+        <button class="admin-btn" type="submit">退出登录</button>
+      </form>
+    {% endif %}
+  </header>
+
+  <main class="admin-main">
+    {% if has_message %}
+      <p class="admin-banner {{ 'admin-banner-ok' if message == '已保存' else 'admin-banner-err' }}">
+        {{ message }}
+      </p>
+    {% endif %}
+    {% block body %}{% endblock %}
+  </main>
+</body>
+
+</html>

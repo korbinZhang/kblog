@@ -1,0 +1,35 @@
+{% extends "base.jinja" %}
+{% block page_css %}<link rel="stylesheet" href="/archive.css">
+<link rel="stylesheet" href="/blog.css">{% endblock %}
+{% block main %}<main class="blog-archive">
+    <section class="toolbar">
+      <div class="tabs">
+        {% for i in toolbar_tabs %}
+          <a class="{{ 'selected' if i.2 }}" href="{{ base_url }}/{{ i.0 }}">
+            {{ i.0 }} · {{ i.1 }}
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="status-line" aria-live="polite">
+      <span id="status-text">{{ current_year }} · {{ current_count }} 篇文章</span>
+      <span class="status-actions">
+        <span class="total-meta">共 <span id="total-count">{{ total_count }}</span> 篇文章</span>
+      </span>
+    </section>
+
+    <div class="outer">
+      <ul class="list-group" id="blogList" aria-live="polite">
+        {% for post in posts %}
+          <li class="list-group-item title">
+            <div class="date">{{ post.date }}</div>
+            <a href="{{ base_url }}/{{ post.year }}/{{ post.slug }}" target="_self">{{ post.title }}</a>
+            <div class="word-count">{{ post.word_count }} 字</div>
+          </li>
+        {% else %}
+          <li class="list-group-item">该年份暂无文章</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>{% endblock %}

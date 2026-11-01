@@ -1,0 +1,61 @@
+{% extends "admin/base.jinja" %}
+
+{% block body %}
+  <section class="admin-card">
+    <div class="admin-card-head">
+      <h2 class="admin-heading">文章（共 {{ total }} 篇）</h2>
+      <a class="admin-btn admin-btn-primary" href="{{ new_url }}">新建文章</a>
+    </div>
+
+    {% if posts %}
+      <table class="admin-table">
+        <thead>
+          <tr><th>标题</th><th>slug</th><th>日期</th><th>状态</th><th>字数</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+          {% for p in posts %}
+            <tr>
+              <td class="admin-cell-title">{{ p.title }}</td>
+              <td class="admin-cell-slug">{{ p.slug }}</td>
+              <td>{{ p.date }}</td>
+              <td>
+                <span class="admin-status {{ 'admin-status-on' if p.published else 'admin-status-draft' }}">
+                  {{ '已发布' if p.published else '草稿' }}
+                </span>
+              </td>
+              <td>{{ p.chars }}</td>
+              <td class="admin-cell-actions">
+                <a class="admin-btn" href="{{ admin_base }}/posts/{{ p.id }}">编辑</a>
+                {% if p.published %}
+                  <form method="post" action="{{ admin_base }}/posts/{{ p.id }}/unpublish">
+                    <button class="admin-btn" type="submit">取消发布</button>
+                  </form>
+                {% else %}
+                  <form method="post" action="{{ admin_base }}/posts/{{ p.id }}/publish">
+                    <button class="admin-btn admin-btn-primary" type="submit">发布</button>
+                  </form>
+                {% endif %}
+                <form method="post" action="{{ admin_base }}/posts/{{ p.id }}/delete"
+                      onsubmit="return confirm('确定删除这篇文章？此操作不可撤销。')">
+                  <button class="admin-btn admin-btn-danger" type="submit">删除</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <nav class="admin-pager">
+        {% if page > 1 %}
+          <a class="admin-btn" href="{{ admin_base }}/posts?page={{ page - 1 }}">上一页</a>
+        {% endif %}
+        <span class="admin-pager-info">第 {{ page }} / {{ pages }} 页</span>
+        {% if page < pages %}
+          <a class="admin-btn" href="{{ admin_base }}/posts?page={{ page + 1 }}">下一页</a>
+        {% endif %}
+      </nav>
+    {% else %}
+      <p class="admin-empty">还没有文章, 点「新建文章」开始。</p>
+    {% endif %}
+  </section>
+{% endblock %}

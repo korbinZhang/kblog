@@ -1,0 +1,47 @@
+{% extends "admin/base.jinja" %}
+
+{% block body %}
+  <section class="admin-card">
+    <div class="admin-card-head">
+      <h2 class="admin-heading">{{ '新建文章' if is_new else '编辑文章' }}</h2>
+      <span class="admin-card-tools">
+        {% if preview_url %}
+          <a class="admin-btn" href="{{ preview_url }}" target="_blank" rel="noopener">查看线上页面</a>
+        {% endif %}
+        <a class="admin-btn" href="{{ back_url }}">返回列表</a>
+      </span>
+    </div>
+
+    <form class="admin-form" method="post" action="{{ action_url }}">
+      <label for="title">标题</label>
+      <input id="title" name="title" type="text" maxlength="200" value="{{ editing.title }}" required>
+
+      <label for="slug">slug（留空则自动生成；前台地址为 /blog/年份/slug）</label>
+      <input id="slug" name="slug" type="text" maxlength="200" value="{{ editing.slug }}"
+             placeholder="my-first-post">
+
+      <label for="datetime">文章日期</label>
+      <input id="datetime" name="datetime" type="datetime-local" value="{{ editing.datetime_local }}" required>
+
+      <label for="description">摘要（页面 description）</label>
+      <textarea id="description" name="description" rows="2" maxlength="500">{{ editing.description }}</textarea>
+
+      <label for="content">正文（Markdown，允许直接写 HTML）</label>
+      <textarea id="content" name="content" class="admin-textarea-code admin-textarea-md" rows="24">{{ editing.content }}</textarea>
+
+      <div class="admin-form-actions">
+        <button class="admin-btn" type="submit" name="action" value="save">保存</button>
+        {% if editing.published %}
+          <button class="admin-btn" type="submit" name="action" value="unpublish">保存并转为草稿</button>
+        {% else %}
+          <button class="admin-btn admin-btn-primary" type="submit" name="action" value="publish">
+            保存并发布
+          </button>
+        {% endif %}
+        <span class="admin-status {{ 'admin-status-on' if editing.published else 'admin-status-draft' }}">
+          {{ '已发布' if editing.published else '草稿' }}
+        </span>
+      </div>
+    </form>
+  </section>
+{% endblock %}

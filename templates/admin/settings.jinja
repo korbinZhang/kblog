@@ -1,0 +1,46 @@
+{% extends "admin/base.jinja" %}
+
+{% block body %}
+  <section class="admin-card">
+    <h2 class="admin-heading">站点信息</h2>
+    <form class="admin-form" method="post" action="{{ action_url }}">
+      <label for="site_name">站点标题（title / 顶栏品牌名）</label>
+      <input id="site_name" name="site_name" type="text" maxlength="200" value="{{ form.site_name }}" required>
+
+      <label for="site_description">站点描述（description）</label>
+      <textarea id="site_description" name="site_description" rows="2" maxlength="500">{{ form.site_description }}</textarea>
+
+      <label for="site_url">站点地址（用于归档绝对链接与文章预览）</label>
+      <input id="site_url" name="site_url" type="text" maxlength="500" value="{{ form.site_url }}">
+
+      <label for="author">作者</label>
+      <input id="author" name="author" type="text" maxlength="200" value="{{ form.author }}">
+
+      <label for="about_content">关于页内容（HTML）</label>
+      <textarea id="about_content" name="about_content" class="admin-textarea-code" rows="8">{{ form.about_content }}</textarea>
+
+      <div class="admin-form-actions">
+        <button class="admin-btn admin-btn-primary" type="submit">保存站点信息</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="admin-card">
+    <h2 class="admin-heading">修改密码</h2>
+    <form class="admin-form" method="post" action="{{ password_url }}">
+      <label for="current">当前密码</label>
+      <input id="current" name="current" type="password" autocomplete="current-password" required>
+
+      <label for="next">新密码</label>
+      <input id="next" name="next" type="password" autocomplete="new-password" minlength="8" required>
+
+      <label for="confirm">确认新密码</label>
+      <input id="confirm" name="confirm" type="password" autocomplete="new-password" minlength="8" required>
+
+      <div class="admin-form-actions">
+        <button class="admin-btn admin-btn-danger" type="submit">修改密码</button>
+        <span class="admin-hint">保存后所有已登录会话都会失效, 需要用新密码重新登录。</span>
+      </div>
+    </form>
+  </section>
+{% endblock %}

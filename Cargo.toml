@@ -1,0 +1,23 @@
+[package]
+name = "kblog"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+argon2 = { version = "0.6", features = ["password-hash"] }
+axum = { version = "0.8.9", features = ["macros"] }
+axum-extra = { version = "0.12", features = ["cookie"] }
+chrono = "0.4.45"
+dotenvy = "0.15.7"
+envy = "0.4.2"
+minijinja = "3.0.5"
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+rand = { version = "0.10.3", features = ["thread_rng"] }
+serde = { version = "1.0.229", features = ["derive"] }
+sqlx = { version = "0.9.0", features = ["chrono", "macros", "runtime-tokio", "sqlite"] }
+# cookie 0.18 的 Expires/Max-Age 只认 time::Duration, 而 axum-extra 未再导出 time
+time = { version = "0.3", default-features = false, features = ["std"] }
+tokio = { version = "1.54.1", features = ["rt-multi-thread"] }
+tower-http = { version = "0.7.1", features = ["compression-br", "compression-gzip", "fs", "trace"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
